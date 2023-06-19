@@ -46,7 +46,7 @@ flux create source git k8s_nginxapp_sot \
 
  # Locally decrypt existing sealed secrete using deployed controller in k8s environment
 
- Check logs : kubectl logs -f <SealedSecretPodName> -n kube-system
+ Check logs : kubectl logs -f <<SealedSecretPodName>> -n kube-system
 
  GetPrivateKeys: kubectl get secret -n kube-system -l sealedsecrets.bitnami.com/sealed-secrets-key -o yaml > sealed-secrets-key.yaml
 
