@@ -1,11 +1,11 @@
 apiVersion: notification.toolkit.fluxcd.io/v1beta1
 kind: Alert
 metadata:
-  name: deploymentStatusAlert
+  name: deploymentstatus
   namespace: fluxcdtutorial
 spec:
   providerRef:
-    name: githubProvider
+    name: githubprovider
   eventSeverity: info
   eventSources:
     - kind: Kustomization
