@@ -8,6 +8,7 @@ spec:
   interval: 30s
   path: ./deploy
   prune: true
+  wait: true
   sourceRef:
     kind: GitRepository
     name: k8snginxappsot
