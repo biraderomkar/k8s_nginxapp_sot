@@ -40,6 +40,10 @@ flux create source git k8s_nginxapp_sot \
 
  install -m 755 kubeseal /usr/local/bin/kubeseal
 
+# First create a secret file with base64 encoded secrets
+
+  echo -n "token/password" |  base64
+
  # Create Sealed secret manifest file
  
  kubeseal --controller-name=sealed-secrets-controller --controller-namespace=kube-system  -n fluxcdtutorial --format yaml < secret.yaml > sealedSecret.yaml
