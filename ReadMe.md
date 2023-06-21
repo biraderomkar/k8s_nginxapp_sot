@@ -75,3 +75,13 @@ flux create kustomization kube-prometheus-stack \
   --health-check-timeout=5m \
   --wait \
   --export > ./deploy/flux_monitoring_sync.yaml
+
+# Collect metrics in prometheus and setup grafana dashboard
+flux create kustomization kube-monitoring-config \
+  --interval=1m \
+  --prune \
+  --source=flux-monitoring \
+  --path="./manifests/monitoring/monitoring-config" \
+  --health-check-timeout=5m \
+  --wait \
+  --export > ./deploy/flux_monitoring-config.yaml

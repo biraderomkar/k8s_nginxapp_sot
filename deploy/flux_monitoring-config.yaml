@@ -1,0 +1,16 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: kube-monitoring-config
+  namespace: fluxcdtutorial
+spec:
+  interval: 1m0s
+  path: ./manifests/monitoring/monitoring-config
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-monitoring
+  timeout: 5m0s
+  wait: true
+
