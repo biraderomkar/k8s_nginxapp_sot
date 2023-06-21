@@ -61,14 +61,14 @@ flux create source git k8s_nginxapp_sot \
 
   # Setting Up prometheus stack
  flux create source git flux-monitoring \
-  --interval=30m \
+  --interval=1m \
   --url=https://github.com/fluxcd/flux2 \
   --branch=main \
   --export > ./deploy/flux_monitoring_source.yaml
 
 # Apply kube-prom-stack using below kustomization definition
 flux create kustomization kube-prometheus-stack \
-  --interval=1h \
+  --interval=1m \
   --prune \
   --source=flux-monitoring \
   --path="./manifests/monitoring/kube-prometheus-stack" \
