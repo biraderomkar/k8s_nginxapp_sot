@@ -57,3 +57,21 @@ flux create source git k8s_nginxapp_sot \
  kubeseal --controller-name=sealed-secrets-controller --controller-namespace=kube-system < sealedSecret.yaml --recovery-unseal --recovery-private-key sealed-secrets-key.yaml -o yaml
 
  Use this link to decode base64 password https://www.base64decode.org/
+
+
+  # Setting Up prometheus stack
+ flux create source git flux-monitoring \
+  --interval=30m \
+  --url=https://github.com/fluxcd/flux2 \
+  --branch=main \
+  --export > ./deploy/flux_monitoring_source.yaml
+
+# Apply kube-prom-stack using below kustomization definition
+flux create kustomization kube-prometheus-stack \
+  --interval=1h \
+  --prune \
+  --source=flux-monitoring \
+  --path="./manifests/monitoring/kube-prometheus-stack" \
+  --health-check-timeout=5m \
+  --wait \
+  --export > ./deploy/flux_monitoring_sync.yaml
